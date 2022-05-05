@@ -1,0 +1,167 @@
+openapi: "3.0.0"
+info:
+  title: Printer Group  API
+  description: THE API WHICH WIll PERFORM PRINTER GROUP CRUD OPERATIONS.
+  version: 1.0.0
+
+tags: 
+ name: PrinterGroups
+
+paths:
+  /PrinterGroups:
+    post:
+      summary: Create PrinterGroups!
+      tags: [PrinterGroups]
+      description: Create A Printer Group.      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  printType:
+                    type: integer
+                    enum:
+                      - 1
+                      - 2 
+                  activeStatus:
+                    type: boolean    
+                  triggers:    
+                    type: array 
+                    items: 
+                      type: object 
+                      properties:
+                        trigger:
+                          type: integer
+                          enum:
+                            - 1
+                            - 2
+                            - 3
+                        orderType:
+                          type: integer
+                          enum:
+                            - 1
+                            - 2            
+      responses:
+        200:
+          description: The PrinterGroupTrigger is Created!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  printType:
+                    type: integer
+                  activeStatus:
+                    type: string  
+  /UpdatePrinterGroups/{printerGroupId}:
+    put:
+      summary: Update PrinterGroups!
+      tags: [PrinterGroups]
+      description: Update A PrinterGroups.
+      parameters:
+        - in: path
+          name: printerGroupId
+          schema:
+            type: integer
+          # required: true  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string 
+                printType:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2         
+      responses:
+        200:
+          description: The PrinterGroups is updated!
+          content:
+            application/json:
+              schema:
+              type: string  
+  /UpdatePrinterGroupTriggers/{printerGroupTriggerId}:
+    put:
+      summary: Update PrinterGroupTriggers!
+      tags: [PrinterGroups]
+      description: Update An PrinterGroupTriggers.
+      parameters:
+        - in: path
+          name: printerGroupTriggerId
+          schema:
+            type: integer
+          # required: true  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trigger:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2
+                    - 3
+                orderType:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2      
+      responses:
+        200:
+          description: The printerGroupTriggers is updated!
+          content:
+            application/json:
+              schema:
+              type: string
+  /PrinterGroupsList:
+    get:
+      summary: Get PrinterGroupTriggers!
+      tags: [PrinterGroups]
+      description: Get All PrinterGroups with Triggers.      
+      responses:
+        200:
+          description: The PrinterGroupTriggers List Is!
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  printType:
+                    type: integer
+                  activeStatus:
+                    type: boolean   
+                  triggers:    
+                    type: array 
+                    items: 
+                      type: object 
+                      properties:
+                        trigger:
+                          type: integer
+                        orderType:
+                          type: integer
