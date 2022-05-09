@@ -1,18 +1,18 @@
-const CONST_INTERNAL_SERVER_ERROR = " Internal_Server_Error";
-const CONST_BAD_REQUEST_ERROR = "Bad_Request_Error";
-const CONST_INVALID_PRINTERID = " Invalid PrinterGroupId!";
-const CONST_INVALID_TRIGGERID = "Invalid PrinterGroupTriggerId!";
-const CONST_TRIGGERS_NOTARRAY = "PrinterGroupTriggers must be an Array!";
-const CONST_ERROR_INT_PRINTERGROUPID = "PrinterGroupId must be a Number!";
-const CONST_ERROR_INT_PRINTERGROUPTRIGGERID = "PrinterGroupTriggerId must be a Number!"
-const CONST_ERROR_PRINTERGROUPLIST = "PrinterGroupTriggerList is Empty!"
+const CONST_INTERNAL_SERVER_ERROR = " internal_server_error";
+const CONST_BAD_REQUEST_ERROR = "bad_request_error";
+const CONST_INVALID_PRINTERGROUPID = " invalid_printergroupid";
+const CONST_INVALID_PRINTERGROUPTRIGGERID = "invalid_printergrouptriggerid";
+const CONST_TRIGGERS_NOTARRAY = "triggers_notarray";
+const CONST_ERROR_INT_PRINTERGROUPID = "error_int_printergroupid";
+const CONST_ERROR_INT_PRINTERGROUPTRIGGERID = "error_int_printergrouptriggerid";
+const CONST_ERROR_EMPTY_PRINTERGROUPLIST = "error_empty_printergrouplist";
 module.exports = {
   CONST_INTERNAL_SERVER_ERROR,
   CONST_BAD_REQUEST_ERROR,
-  CONST_INVALID_PRINTERID,
-  CONST_INVALID_TRIGGERID,
+  CONST_INVALID_PRINTERGROUPID,
+  CONST_INVALID_PRINTERGROUPTRIGGERID,
   CONST_TRIGGERS_NOTARRAY,
   CONST_ERROR_INT_PRINTERGROUPID,
   CONST_ERROR_INT_PRINTERGROUPTRIGGERID,
-  CONST_ERROR_PRINTERGROUPLIST,
+  CONST_ERROR_EMPTY_PRINTERGROUPLIST,
 };

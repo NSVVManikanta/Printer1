@@ -56,6 +56,7 @@ module.exports = (sequelize, Sequelize) => {
           });
         },
         beforeUpdate(printerGroupObject, options) {
+          if(printerGroupObject)
           return (printerGroupObject.updatedAt = commonHelper.getTimeStamp());
         },
       },

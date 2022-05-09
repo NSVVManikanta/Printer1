@@ -17,7 +17,7 @@ app.use(express.json());
 //       console.log("Database and tables created!");
 //   }).catch(err=>console.log(err.original));
 
-app.use("/", route);
+app.use("/printer-groups", route);
 
 app.listen(8080, () => {
   console.log("Sever running on 8080!");

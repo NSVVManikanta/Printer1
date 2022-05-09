@@ -8,7 +8,7 @@ tags:
  name: PrinterGroups
 
 paths:
-  /PrinterGroups:
+  /printer-groups:
     post:
       summary: Create PrinterGroups!
       tags: [PrinterGroups]
@@ -62,8 +62,79 @@ paths:
                   printType:
                     type: integer
                   activeStatus:
-                    type: string  
-  /UpdatePrinterGroups/{printerGroupId}:
+                    type: string 
+    get:
+        summary: Get PrinterGroups!
+        tags: [PrinterGroups]
+        description: Get All PrinterGroups.    
+        parameters:
+          - in: query
+            name: status
+            schema:
+              type: integer
+              enum:
+                - 0
+                - 1 
+        responses:
+          200:
+            description: The PrinterGroups List Is!
+            content:
+              application/json:
+                schema: 
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    printType:
+                      type: integer
+                    activeStatus:
+                      type: boolean  
+                    updatedAt: 
+                      type: integer   
+                    createdAt:
+                      type: integer
+  /printer-groups/{printerGroupId}:                    
+    get:
+        summary: Fetch One PrinterGroup!
+        tags: [PrinterGroups]
+        description: Fetch One PrinterGroup with Triggers.
+        parameters:
+          - in: path
+            name: printerGroupId
+            schema:
+              type: integer
+            # required: true      
+        responses:
+          200:
+            description: The PrinterGroupTriggers List Is!
+            content:
+              application/json:
+                schema: 
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    printType:
+                      type: integer
+                    activeStatus:
+                      type: boolean   
+                    triggers:    
+                      type: array 
+                      items: 
+                        type: object 
+                        properties:
+                          trigger:
+                            type: integer
+                          orderType:
+                            type: integer                                       
     put:
       summary: Update PrinterGroups!
       tags: [PrinterGroups]
@@ -97,7 +168,7 @@ paths:
             application/json:
               schema:
               type: string  
-  /UpdatePrinterGroupTriggers/{printerGroupTriggerId}:
+  /printer-groups/trigger/{printerGroupTriggerId}:
     put:
       summary: Update PrinterGroupTriggers!
       tags: [PrinterGroups]
@@ -133,35 +204,3 @@ paths:
             application/json:
               schema:
               type: string
-  /PrinterGroupsList:
-    get:
-      summary: Get PrinterGroupTriggers!
-      tags: [PrinterGroups]
-      description: Get All PrinterGroups with Triggers.      
-      responses:
-        200:
-          description: The PrinterGroupTriggers List Is!
-          content:
-            application/json:
-              schema: 
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  title:
-                    type: string
-                  description:
-                    type: string
-                  printType:
-                    type: integer
-                  activeStatus:
-                    type: boolean   
-                  triggers:    
-                    type: array 
-                    items: 
-                      type: object 
-                      properties:
-                        trigger:
-                          type: integer
-                        orderType:
-                          type: integer

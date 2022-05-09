@@ -8,27 +8,35 @@ app.use(express.json());
 
 //Create Printer Group
 app.post(
-  "/PrinterGroups",
+  "/",
   validation.createPrinterGroups,
   printerControllerRegHandler.createPrinterGroupsReqHandler
 );
 
 //PrinterGroup List
 app.get(
-  "/PrinterGroupsList",
+  "/",
+  validation.printerGrouplist,
   printerControllerRegHandler.printerGroupsListReqHandler
+);
+
+//Fetch One PrinterGroup List
+app.get(
+  "/:printerGroupId",
+  validation.fetchPrinterGroupDetails,
+  printerControllerRegHandler.fetchOnePrinterGroupsListReqHandler
 );
 
 //Update PrinterGroup
 app.put(
-  "/UpdatePrinterGroups/:printerGroupId",
+  "/:printerGroupId",
   validation.updatePrinterGroups,
   printerControllerRegHandler.updatePrinterGroupsReqHandler
 );
 
 //update printeGroupTrigger
 app.put(
-  "/UpdatePrinterGroupTriggers/:printerGroupTriggerId",
+  "/trigger/:printerGroupTriggerId",
   validation.updatePrinterGroupTriggers,
   printerControllerRegHandler.updatePrinterGroupTriggersReqHandler
 );
