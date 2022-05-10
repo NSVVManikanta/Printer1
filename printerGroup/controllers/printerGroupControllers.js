@@ -7,7 +7,6 @@ const resConstant = require("../constants");
  * @param {*} title
  * @param {*} description
  * @param {*} printType
- * @param {*} activeStatus
  * @param {*} triggers array
  * @param {*} trigger
  * @param {*} orderType
@@ -23,15 +22,13 @@ const createPrinterGroups = async (postData) => {
         title: postData.title,
         description: postData.description,
         printType: postData.printType,
-        activeStatus: postData.activeStatus,
       },
       { transaction: t }
     );
-    if (!Array.isArray(triggers)) {
+    if (!Array.isArray(postData.triggers)) {
       throw errConstant.CONST_TRIGGERS_NOTARRAY;
     } else {
-      const triggers = postData.triggers;
-      const printerGroupArrObj = triggers.map((trigger) => {
+      const printerGroupArrObj = postData.triggers.map((trigger) => {
         trigger.printerGroupId = printerGroup.id;
         return trigger;
       });
@@ -42,14 +39,14 @@ const createPrinterGroups = async (postData) => {
       await t.commit();
     }
     return {
+      id: printerGroup.id,
       title: printerGroup.title,
       description: printerGroup.description,
       printType: printerGroup.printType,
-      activeStatus: printerGroup.activeStatus,
+      status: printerGroup.status,
     };
   } catch (err) {
     await t.rollback();
-    console.err(err);
     throw err;
   }
 };
@@ -65,13 +62,12 @@ const printerGroupsList = async (status) => {
   try {
     let filters = {};
     if (status == 1 || status ==0) {
-      filters.activeStatus = status;
+      filters.status = status;
     }
     // if (status == 0) {
     //   filters.activeStatus = status;
     // }
     const printerGroupList = await db.PrinterGroups.findAll({
-      attributes: { exclude: ["createdBy", "updatedBy"] },
       where: filters,
     });
     if (!printerGroupList.length) {
@@ -80,7 +76,6 @@ const printerGroupsList = async (status) => {
       return printerGroupList;
     }
   } catch (err) {
-    console.err(err);
     throw err;
   }
 };
@@ -92,11 +87,9 @@ const fetchPrinterGroupDetails = async (printerGroupId) => {
       throw errConstant.CONST_ERROR_INT_PRINTERGROUPID;
     }
     const printerGroupListDetails = await db.PrinterGroups.findOne({
-      attributes: { exclude: ["createdBy", "updatedBy", "activeStatus"] },
       include: [
         {
           model: db.PrinterGroupTriggers,
-          attributes: { exclude: ["createdBy", "updatedBy"] },
         },
       ],
       where: { id: printerGroupId },
@@ -106,7 +99,6 @@ const fetchPrinterGroupDetails = async (printerGroupId) => {
     }
     return printerGroupListDetails;
   } catch (err) {
-    console.err(err);
     throw err;
   }
 };
@@ -120,7 +112,7 @@ const fetchPrinterGroupDetails = async (printerGroupId) => {
  * @returns String
  */
 //Update PrinterGroup
-const updatePrinterGroups = async (updateData) => {
+const updatePrinterGroups = async (updateData,printerGroupId) => {
   try {
     if (isNaN(printerGroupId)) {
       throw errConstant.CONST_ERROR_INT_PRINTERGROUPID;
@@ -140,7 +132,6 @@ const updatePrinterGroups = async (updateData) => {
     );
     return resConstant.UPDATE_PRINTER_GROUP_RESPONSE;
   } catch (err) {
-    console.err(err);
     throw err;
   }
 };
@@ -174,7 +165,6 @@ const updatePrinterGroupTriggers = async (
     );
     return resConstant.UPDATE_PRINTER_GROUP_TRIGGERS_RESPONSE;
   } catch (err) {
-    console.err(err);
     throw err;
   }
 };

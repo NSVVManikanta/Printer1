@@ -8,5 +8,11 @@ const formatResponse = (result)=>{
      code:result,
    }
 }
-module.exports = { getTimeStamp,formatResponse };
+
+const successResponse = (result)=>{
+  return{
+    data:result,
+  }
+}
+module.exports = { getTimeStamp,formatResponse,successResponse };
 

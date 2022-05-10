@@ -4,6 +4,7 @@ const db = require("../../util/database");
 const status = require("http-status");
 const commonHelper = require('../../Helper');
 const formatResponse = commonHelper.formatResponse;
+const successResponse = commonHelper.successResponse;
 
 const createPrinterGroupsReqHandler = async (req, res) => {
   try {
@@ -46,17 +47,17 @@ const fetchOnePrinterGroupsListReqHandler = async (req, res) => {
       case errConstant.CONST_ERROR_INT_PRINTERGROUPID:
         res
           .status(status.BAD_REQUEST)
-          .send(errConstant.CONST_ERROR_INT_PRINTERGROUPID);
+          .send(formatResponse(errConstant.CONST_ERROR_INT_PRINTERGROUPID));
         break;
       case errConstant.CONST_INVALID_PRINTERGROUPID:
         res
           .status(status.NOT_FOUND)
-          .send(errConstant.CONST_INVALID_PRINTERGROUPID);
+          .send(formatResponse(errConstant.CONST_INVALID_PRINTERGROUPID));
         break;
       default:
         res
           .status(status.INTERNAL_SERVER_ERROR)
-          .send(errConstant.CONST_INTERNAL_SERVER_ERROR);
+          .send(formatResponse(errConstant.CONST_INTERNAL_SERVER_ERROR));
         break;
     }
   }
@@ -73,12 +74,12 @@ const printerGroupsListReqHandler = async (req, res) => {
       case errConstant.CONST_ERROR_EMPTY_PRINTERGROUPLIST:
         res
           .status(status.NO_CONTENT)
-          .send(errConstant.CONST_ERROR_EMPTY_PRINTERGROUPLIST);
+          .send(formatResponse(errConstant.CONST_ERROR_EMPTY_PRINTERGROUPLIST));
         break;
       default:
         res
           .status(status.INTERNAL_SERVER_ERROR)
-          .send(errConstant.CONST_INTERNAL_SERVER_ERROR);
+          .send(formatResponse(errConstant.CONST_INTERNAL_SERVER_ERROR));
         break;
     }
   }
@@ -93,28 +94,28 @@ const updatePrinterGroupsReqHandler = async (req, res) => {
       req.body,
       req.params.printerGroupId
     );
-    res.status(status.OK).send(result);
+    res.status(status.OK).send(successResponse(result));
   } catch (err) {
     switch (err) {
       case errConstant.CONST_BAD_REQUEST_ERROR:
         res
           .status(status.BAD_REQUEST)
-          .send(errConstant.CONST_BAD_REQUEST_ERROR);
+          .send(formatResponse(errConstant.CONST_BAD_REQUEST_ERROR));
         break;
       case errConstant.CONST_ERROR_INT_PRINTERGROUPID:
         res
           .status(status.BAD_REQUEST)
-          .send(errConstant.CONST_ERROR_INT_PRINTERGROUPID);
+          .send(formatResponse(errConstant.CONST_ERROR_INT_PRINTERGROUPID));
         break;
       case errConstant.CONST_INVALID_PRINTERGROUPID:
         res
           .status(status.NOT_FOUND)
-          .send(errConstant.CONST_INVALID_PRINTERGROUPID);
+          .send(formatResponse(errConstant.CONST_INVALID_PRINTERGROUPID));
         break;
       default:
         res
           .status(status.INTERNAL_SERVER_ERROR)
-          .send(errConstant.CONST_INTERNAL_SERVER_ERROR);
+          .send(formatResponse(errConstant.CONST_INTERNAL_SERVER_ERROR));
         break;
     }
   }
@@ -129,28 +130,28 @@ const updatePrinterGroupTriggersReqHandler = async (req, res) => {
      req.body,
       req.params.printerGroupTriggerId
     );
-    res.status(status.OK).send(result);
+    res.status(status.OK).send(successResponse(result));
   } catch (err) {
     switch (err) {
       case errConstant.CONST_BAD_REQUEST_ERROR:
         res
           .status(status.BAD_REQUEST)
-          .send(errConstant.CONST_BAD_REQUEST_ERROR);
+          .send(formatResponse(errConstant.CONST_BAD_REQUEST_ERROR));
         break;
       case errConstant.CONST_ERROR_INT_PRINTERGROUPTRIGGERID:
         res
           .status(status.BAD_REQUEST)
-          .send(errConstant.CONST_ERROR_INT_PRINTERGROUPTRIGGERID);
+          .send(formatResponse(errConstant.CONST_ERROR_INT_PRINTERGROUPTRIGGERID));
         break;
       case errConstant.CONST_INVALID_PRINTERGROUPTRIGGERID:
         res
           .status(status.NOT_FOUND)
-          .send(errConstant.CONST_INVALID_PRINTERGROUPTRIGGERID);
+          .send(formatResponse(errConstant.CONST_INVALID_PRINTERGROUPTRIGGERID));
         break;
       default:
         res
           .status(status.INTERNAL_SERVER_ERROR)
-          .send(errConstant.CONST_INTERNAL_SERVER_ERROR);
+          .send(formatResponse(errConstant.CONST_INTERNAL_SERVER_ERROR));
         break;
     }
   }

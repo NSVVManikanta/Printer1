@@ -49,9 +49,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         field: "c9",
       },
-      activeStatus: {
+      status: {
         type: DataTypes.BOOLEAN,
-        allowNull: true,
+        allowNull: false,
+        defaultValue: 1,
         field: "c10",
       },
     },

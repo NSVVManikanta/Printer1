@@ -28,9 +28,7 @@ paths:
                     type: integer
                     enum:
                       - 1
-                      - 2 
-                  activeStatus:
-                    type: boolean    
+                      - 2     
                   triggers:    
                     type: array 
                     items: 
@@ -55,14 +53,43 @@ paths:
               schema:
                 type: object
                 properties:
+                  id:
+                    type: integer
                   title:
                     type: string
                   description:
                     type: string
                   printType:
                     type: integer
-                  activeStatus:
+                  status:
                     type: string 
+        400:
+          description: Bad request! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string   
+        404:
+          description: Not Found! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string  
+        500:
+          description: Internal Server Error! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string                                
     get:
         summary: Get PrinterGroups!
         tags: [PrinterGroups]
@@ -91,12 +118,36 @@ paths:
                       type: string
                     printType:
                       type: integer
-                    activeStatus:
-                      type: boolean  
+                    printerCount:
+                      type: integer  
                     updatedAt: 
                       type: integer   
                     createdAt:
                       type: integer
+                    createdBy:
+                      type: integer
+                    updatedBy:
+                      type: integer    
+                    status:
+                      type: boolean  
+          204:
+            description: No Content! 
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    code:
+                      type: string 
+          500:
+            description: Internal Server Error! 
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    code:
+                      type: string
   /printer-groups/{printerGroupId}:                    
     get:
         summary: Fetch One PrinterGroup!
@@ -124,17 +175,66 @@ paths:
                       type: string
                     printType:
                       type: integer
-                    activeStatus:
+                    printerCount:
+                      type: integer 
+                    updatedAt: 
+                      type: integer   
+                    createdAt:
+                      type: integer
+                    createdBy:
+                      type: integer
+                    updatedBy:
+                      type: integer   
+                    status:
                       type: boolean   
                     triggers:    
                       type: array 
                       items: 
                         type: object 
                         properties:
+                          id:
+                            type: integer
+                          printerGroupId:
+                            type: integer  
                           trigger:
                             type: integer
                           orderType:
-                            type: integer                                       
+                            type: integer
+                          updatedAt: 
+                            type: integer   
+                          createdAt:
+                            type: integer
+                          createdBy:
+                            type: integer
+                          updatedBy:
+                            type: integer
+          400:
+            description: Bad Request! 
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    code:
+                      type: string  
+          404:
+            description: Not Found! 
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    code:
+                      type: string 
+          500:
+            description: Internal Server Error! 
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    code:
+                      type: string                                                                             
     put:
       summary: Update PrinterGroups!
       tags: [PrinterGroups]
@@ -143,7 +243,7 @@ paths:
         - in: path
           name: printerGroupId
           schema:
-            type: integer
+            type: string
           # required: true  
       requestBody:
         required: true
@@ -167,14 +267,37 @@ paths:
           content:
             application/json:
               schema:
-              type: string  
+                type: object
+                properties:
+                  data:
+                    type: string    
         400:
-          description: The PrinterGroups is updated!
+          description: Bad Request! 
           content:
             application/json:
               schema:
-              type: string
-                
+                type: object
+                properties:
+                  code:
+                    type: string          
+        404:
+          description: Not Found! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                   code:
+                    type: string   
+        500:
+          description: Internal Server Error! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string            
   /printer-groups/trigger/{printerGroupTriggerId}:
     put:
       summary: Update PrinterGroupTriggers!
@@ -206,8 +329,38 @@ paths:
                     - 2      
       responses:
         200:
-          description: The printerGroupTriggers is updated!
+          description: The PrinterGroups is updated!
           content:
             application/json:
               schema:
-              type: string
+                type: object
+                properties:
+                  data:
+                    type: string
+        400:
+          description: Bad Request! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string   
+        404:
+          description: Not Found! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string                     
+        500:
+          description: Internal Server Error! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
