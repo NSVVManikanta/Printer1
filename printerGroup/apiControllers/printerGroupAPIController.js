@@ -2,6 +2,8 @@ const printerGroupController = require("../controllers/printerGroupControllers")
 const errConstant = require("../errors/printerGroupErrors");
 const db = require("../../util/database");
 const status = require("http-status");
+const commonHelper = require('../../Helper');
+const formatResponse = commonHelper.formatResponse;
 
 const createPrinterGroupsReqHandler = async (req, res) => {
   try {
@@ -9,11 +11,7 @@ const createPrinterGroupsReqHandler = async (req, res) => {
       throw errConstant.CONST_BAD_REQUEST_ERROR;
     }
     const result = await printerGroupController.createPrinterGroups(
-      req.body.title,
-      req.body.description,
-      req.body.printType,
-      req.body.activeStatus,
-      req.body.triggers
+      req.body
     );
     res.status(status.CREATED).send(result);
   } catch (err) {
@@ -21,17 +19,17 @@ const createPrinterGroupsReqHandler = async (req, res) => {
       case errConstant.CONST_BAD_REQUEST_ERROR:
         res
           .status(status.BAD_REQUEST)
-          .send(errConstant.CONST_BAD_REQUEST_ERROR);
+          .send(formatResponse(errConstant.CONST_BAD_REQUEST_ERROR));
         break;
       case errConstant.CONST_TRIGGERS_NOTARRAY:
         res
           .status(status.BAD_REQUEST)
-          .send(errConstant.CONST_TRIGGERS_NOTARRAY);
+          .send(formatResponse(errConstant.CONST_TRIGGERS_NOTARRAY));
         break;
       default:
         res
           .status(status.INTERNAL_SERVER_ERROR)
-          .send(errConstant.CONST_INTERNAL_SERVER_ERROR);
+          .send(formatResponse(errConstant.CONST_INTERNAL_SERVER_ERROR));
         break;
     }
   }
@@ -92,9 +90,7 @@ const updatePrinterGroupsReqHandler = async (req, res) => {
       throw errConstant.CONST_BAD_REQUEST_ERROR;
     }
     const result = await printerGroupController.updatePrinterGroups(
-      req.body.title,
-      req.body.description,
-      req.body.printType,
+      req.body,
       req.params.printerGroupId
     );
     res.status(status.OK).send(result);
@@ -130,8 +126,7 @@ const updatePrinterGroupTriggersReqHandler = async (req, res) => {
       throw errConstant.CONST_BAD_REQUEST_ERROR;
     }
     const result = await printerGroupController.updatePrinterGroupTriggers(
-      req.body.trigger,
-      req.body.orderType,
+     req.body,
       req.params.printerGroupTriggerId
     );
     res.status(status.OK).send(result);

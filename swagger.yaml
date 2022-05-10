@@ -168,6 +168,13 @@ paths:
             application/json:
               schema:
               type: string  
+        400:
+          description: The PrinterGroups is updated!
+          content:
+            application/json:
+              schema:
+              type: string
+                
   /printer-groups/trigger/{printerGroupTriggerId}:
     put:
       summary: Update PrinterGroupTriggers!
