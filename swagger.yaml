@@ -71,16 +71,7 @@ paths:
                 type: object
                 properties:
                   code:
-                    type: string   
-        404:
-          description: Not Found! 
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: string  
+                    type: string     
         500:
           description: Internal Server Error! 
           content:
@@ -216,16 +207,7 @@ paths:
                   type: object
                   properties:
                     code:
-                      type: string  
-          404:
-            description: Not Found! 
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    code:
-                      type: string 
+                      type: string   
           500:
             description: Internal Server Error! 
             content:
@@ -279,16 +261,7 @@ paths:
                 type: object
                 properties:
                   code:
-                    type: string          
-        404:
-          description: Not Found! 
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                   code:
-                    type: string   
+                    type: string             
         500:
           description: Internal Server Error! 
           content:
@@ -345,16 +318,7 @@ paths:
                 type: object
                 properties:
                   code:
-                    type: string   
-        404:
-          description: Not Found! 
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: string                     
+                    type: string                        
         500:
           description: Internal Server Error! 
           content:

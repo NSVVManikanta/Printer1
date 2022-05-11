@@ -1,5 +1,6 @@
 const printerGroupController = require("../controllers/printerGroupControllers");
 const errConstant = require("../errors/printerGroupErrors");
+const resConstant = require("../constants");
 const db = require("../../util/database");
 const status = require("http-status");
 const commonHelper = require('../../Helper');
@@ -14,7 +15,7 @@ const createPrinterGroupsReqHandler = async (req, res) => {
     const result = await printerGroupController.createPrinterGroups(
       req.body
     );
-    res.status(status.CREATED).send(result);
+    res.status(status.CREATED).send(successResponse(result));
   } catch (err) {
     switch (err) {
       case errConstant.CONST_BAD_REQUEST_ERROR:
@@ -41,7 +42,7 @@ const fetchOnePrinterGroupsListReqHandler = async (req, res) => {
     const result = await printerGroupController.fetchPrinterGroupDetails(
       req.params.printerGroupId
     );
-    res.status(status.OK).send(result);
+    res.status(status.OK).send(successResponse(result));
   } catch (err) {
     switch (err) {
       case errConstant.CONST_ERROR_INT_PRINTERGROUPID:
@@ -68,7 +69,7 @@ const printerGroupsListReqHandler = async (req, res) => {
     const result = await printerGroupController.printerGroupsList(
       req.query.status
     );
-    res.status(status.OK).send(result);
+    res.status(status.OK).send(successResponse(result));
   } catch (err) {
     switch (err) {
       case errConstant.CONST_ERROR_EMPTY_PRINTERGROUPLIST:
@@ -94,7 +95,7 @@ const updatePrinterGroupsReqHandler = async (req, res) => {
       req.body,
       req.params.printerGroupId
     );
-    res.status(status.OK).send(successResponse(result));
+    res.status(status.OK).send(successResponse(result,resConstant.UPDATE_PRINTER_GROUP_RESPONSE),);
   } catch (err) {
     switch (err) {
       case errConstant.CONST_BAD_REQUEST_ERROR:
@@ -130,7 +131,7 @@ const updatePrinterGroupTriggersReqHandler = async (req, res) => {
      req.body,
       req.params.printerGroupTriggerId
     );
-    res.status(status.OK).send(successResponse(result));
+    res.status(status.OK).send(successResponse(result,resConstant.UPDATE_PRINTER_GROUP_TRIGGERS_RESPONSE));
   } catch (err) {
     switch (err) {
       case errConstant.CONST_BAD_REQUEST_ERROR:

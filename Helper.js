@@ -9,9 +9,10 @@ const formatResponse = (result)=>{
    }
 }
 
-const successResponse = (result)=>{
+const successResponse = (result,message)=>{
   return{
     data:result,
+    message:message
   }
 }
 module.exports = { getTimeStamp,formatResponse,successResponse };

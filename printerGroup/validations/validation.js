@@ -35,7 +35,9 @@ function createPrinterGroups(req, res, next) {
       triggers: req.body.triggers,
     };
     const options = {
-      abortEarly: false,  
+      abortEarly: false, 
+      allowUnknown: true,
+      stripUnknown: true 
     }
     const schemaerr = schema.validate(dataToValidate,options);
     if (schemaerr.error) {
@@ -109,7 +111,6 @@ const schema1 = Joi.object({
   printType: Joi.number().integer().valid(1, 2).messages({
     'number.base': 'printerGroupId must be an integer!'
   }),
-  activeStatus: Joi.boolean(),
 });
 function updatePrinterGroups(req, res, next) {
   try {
@@ -118,10 +119,11 @@ function updatePrinterGroups(req, res, next) {
       title: req.body.title,
       description: req.body.description,
       printType: req.body.printType,
-      activeStatus: req.body.activeStatus,
     };
     const options = {
-      abortEarly: false,  
+      abortEarly: false,
+      allowUnknown: true,
+      stripUnknown: true  
     }
     const schemaerr1 = schema1.validate(dataToValidate1,options);
     if (schemaerr1.error) {
@@ -156,6 +158,8 @@ function updatePrinterGroupTriggers(req, res, next) {
     };
     const options = {
       abortEarly: false,  
+      allowUnknown: true,
+      stripUnknown: true
     }
     const schemaerr2 = schema2.validate(dataToValidate2,options);
     if (schemaerr2.error) {

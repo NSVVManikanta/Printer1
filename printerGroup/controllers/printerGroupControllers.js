@@ -1,6 +1,5 @@
 const db = require("../../util/database");
 const errConstant = require("../errors/printerGroupErrors");
-const resConstant = require("../constants");
 
 /**
  * create
@@ -64,9 +63,6 @@ const printerGroupsList = async (status) => {
     if (status == 1 || status ==0) {
       filters.status = status;
     }
-    // if (status == 0) {
-    //   filters.activeStatus = status;
-    // }
     const printerGroupList = await db.PrinterGroups.findAll({
       where: filters,
     });
@@ -130,7 +126,7 @@ const updatePrinterGroups = async (updateData,printerGroupId) => {
         printType:  updateData.printType,
       }
     );
-    return resConstant.UPDATE_PRINTER_GROUP_RESPONSE;
+    return {id:printerGroupId};
   } catch (err) {
     throw err;
   }
@@ -163,7 +159,7 @@ const updatePrinterGroupTriggers = async (
         orderType: postData.orderType,
       }
     );
-    return resConstant.UPDATE_PRINTER_GROUP_TRIGGERS_RESPONSE;
+    return {id:printerGroupTriggerId};
   } catch (err) {
     throw err;
   }
