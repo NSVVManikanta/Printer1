@@ -109,7 +109,7 @@ const schema1 = Joi.object({
   }),
   description: Joi.string(),
   printType: Joi.number().integer().valid(1, 2).messages({
-    'number.base': 'printerGroupId must be an integer!'
+    'number.base': 'printType must be an integer!'
   }),
 });
 function updatePrinterGroups(req, res, next) {
@@ -143,10 +143,10 @@ const schema2 = Joi.object({
     'number.base': 'printerGroupTriggerId must be an integer!'
   }),
   trigger: Joi.number().integer().valid(1, 2, 3).messages({
-    'number.base': 'printerGroupTriggerId must be an integer!'
+    'number.base': 'trigger must be an integer!'
   }),
   orderType: Joi.number().integer().valid(1, 2).messages({
-    'number.base': 'printerGroupTriggerId must be an integer!'
+    'number.base': 'orderType must be an integer!'
   }),
 });
 function updatePrinterGroupTriggers(req, res, next) {
