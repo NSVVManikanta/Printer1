@@ -74,7 +74,10 @@ module.exports = (sequelize, DataTypes) => {
   printerGroups.associate = function (models) {
     printerGroups.hasMany(models.PrinterGroupTriggers, {
       foreignKey: "printerGroupId",
-    });
+    }),
+    printerGroups.belongsToMany(models.Printer, {
+      through: models.PrinterGroupAssignment 
+     });
   };
   return printerGroups;
 };

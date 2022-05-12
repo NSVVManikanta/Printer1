@@ -50,6 +50,8 @@ const createPrinterGroups = async (postData) => {
   }
 };
 
+
+
 /**
  * list
  * @param {*} req

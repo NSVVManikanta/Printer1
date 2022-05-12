@@ -15,6 +15,9 @@ const db = {};
 var filesArray = [
   "../printerGroup/models/printerGroups",
   "../printerGroup/models/printerGroupTriggers",
+  '../Device/models/deviceModel',
+  "../Device/models/printerModel",
+  "../Device/models/printerGroupAssignment"
 ];
 
 filesArray.forEach((file) => {

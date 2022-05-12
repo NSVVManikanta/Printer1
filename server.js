@@ -3,6 +3,7 @@ const printerGroups = require("./printerGroup/models/printerGroups");
 const printerTriggers = require("./printerGroup/models/printerGroupTriggers");
 const db = require("./util/database");
 const route = require("./printerGroup/Routes/route");
+const deviceRoute = require('./Device/Routes/route')
 const swaggerUi = require("swagger-ui-express");
 const yaml = require("yamljs");
 const swaggerDocs = yaml.load("./swagger.yaml");
@@ -18,6 +19,7 @@ app.use(express.json());
 //   }).catch(err=>console.log(err.original));
 
 app.use("/printer-groups", route);
+app.use('/device',deviceRoute)
 
 app.listen(8080, () => {
   console.log("Sever running on 8080!");
