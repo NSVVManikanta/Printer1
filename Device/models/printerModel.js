@@ -102,7 +102,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'deviceId',
     }),
     printer.belongsToMany(models.PrinterGroups, {
-       through: models.PrinterGroupAssignment 
+       through: models.PrinterGroupAssignment,foreignKey: 'printerId' 
       })
     };
 

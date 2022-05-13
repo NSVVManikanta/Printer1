@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         assignedAt: {
           type: DataTypes.DATE,
+          defaultValue: DataTypes.NOW,
           allowNull: false,
           field: 'c4',
         },
@@ -33,13 +34,14 @@ module.exports = (sequelize, DataTypes) => {
       {
         tableName: 't112',
         hooks: {
-            beforeDestroy(printerGroupObject, options) {
-              if(printerGroupObject)
-              return (printerGroupObject.assignedAt = commonHelper.getTimeStamp());
-            },
+          beforeBulkCreate(printerGroupObject, options) {
+            return printerGroupObject.map((printer) => {
+              printer.assignedAt = commonHelper.getDate();
+              return printer;
+            });
+          },
           },
       },
     )
-  
     return printerGroupAssignment
   }

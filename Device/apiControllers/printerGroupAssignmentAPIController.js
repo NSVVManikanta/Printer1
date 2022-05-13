@@ -12,7 +12,7 @@ const assignPrinterGroupReqHandler = async (req, res) => {
     //     throw errConstant.CONST_BAD_REQUEST_ERROR;
     //   }
       const result = await printerGroupAssignConstroller.assignPrinterGroup(
-        req.body.Assign,
+        req.body.printerGroupId,
         req.params.printerId,
       );
       res.status(status.CREATED).send(successResponse(result));
@@ -43,7 +43,8 @@ const assignPrinterGroupReqHandler = async (req, res) => {
     //     throw errConstant.CONST_BAD_REQUEST_ERROR;
     //   }
       const result = await printerGroupAssignConstroller.unAssignPrinterGroup(
-        req.body.Assign
+        req.body.printerGroupId,
+        req.params.printerId,
       );
       res.status(status.CREATED).send(successResponse(result));
     } catch (err) {
