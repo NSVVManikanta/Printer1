@@ -444,4 +444,101 @@ paths:
                 type: object
                 properties:
                   code:
-                    type: string                                      
+                    type: string 
+  /device/assignOne/{printerId}/{printerGroupId}:
+    post:
+      summary: Assign One PrinterGroups!
+      tags: [PrinterGroupAssignment]
+      description: Assign One PrinterGroups to Printer. 
+      parameters:
+        - in: path
+          name: printerId
+          schema:
+            type: integer
+          # required: true
+        - in: path
+          name: printerGroupId
+          schema:
+            type: integer
+          # required: true                
+      responses:
+        200:
+          description: The PrinterGroups is Assigned!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  printerGroupId:
+                    type: integer
+                  printerId:
+                    type: integer
+                  assignedAt:
+                    type: date
+                  assignedBy:
+                    type: integer 
+        400:
+          description: Bad request! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string     
+        500:
+          description: Internal Server Error! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string 
+  /device/unAssignOne/{printerId}/{printerGroupId}:
+    put:
+      summary: UnAssign PrinterGroups!
+      tags: [PrinterGroupAssignment]
+      description: UnAssign PrinterGroups to Printer.  
+      parameters:
+        - in: path
+          name: printerId
+          schema:
+            type: integer
+          # required: true  
+        - in: path
+          name: printerGroupId
+          schema:
+            type: integer
+          # required: true                 
+      responses:
+        200:
+          description: The PrinterGroups is UnAssigned!
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  id:
+                    type: integer 
+        400:
+          description: Bad request! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string     
+        500:
+          description: Internal Server Error! 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string                                                                        
+                                     
