@@ -24,11 +24,11 @@ const assignPrinterGroups = async (printerGroupArr, printerId) => {
             return assign;
         });
         console.log(assignmentArrObj);
-        const printerGroupAssignment = await Model.PrinterGroupAssignment.bulkCreate(assignmentArrObj);
-        return printerGroupAssignment;
+         await Model.PrinterGroupAssignment.bulkCreate(assignmentArrObj);
+        return [{printerGroupId :printerGroupArr.PrinterGroupId}];
     }
     if(!arr.length){
-        return [{id:printerGroupArr}]
+        return [{printerGroupId :printerGroupArr.PrinterGroupId}];
     }
     } catch (err) {
         console.log(err);
