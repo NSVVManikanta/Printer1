@@ -10,8 +10,11 @@ app.post('/printer', deviceController.createDevice, printerController.createPrin
 
 app.post('/assign/:printerId', printerGroupAssignmentAPIController.assignPrinterGroupReqHandler);
 
-app.put('/unAssign/:printerId', printerGroupAssignmentAPIController.unassignPrinterGroupReqHandler);
+app.put('/unAssign/:printerId', printerGroupAssignmentAPIController.unAssignPrinterGroupReqHandler);
 
+app.post('/assignOne/:printerId/:printerGroupId', printerGroupAssignmentAPIController.assignOnePrinterGroupReqHandler);
+
+app.delete('/unAssignOne/:printerId/:printerGroupId', printerGroupAssignmentAPIController.unAssignOnePrinterGroupReqHandler);
 
 
 
