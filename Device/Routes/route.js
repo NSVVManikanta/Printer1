@@ -4,19 +4,19 @@ app.use(express.json());
 const deviceController = require('../controllers/deviceController');
 const printerController = require('../controllers/printerController')
 const printerGroupAssignmentAPIController = require('../apiControllers/printerGroupAssignmentAPIController')
+const validation = require("../validations/validation");
+
 
 
 app.post('/printer', deviceController.createDevice, printerController.createPrinter)
 
-app.post('/assign/:printerId', printerGroupAssignmentAPIController.assignPrinterGroupReqHandler);
+app.post('/printer/:printerId/assign/printerGroups',validation.assignPrinterGroups, printerGroupAssignmentAPIController.assignPrinterGroupReqHandler);
 
-app.put('/unAssign/:printerId', printerGroupAssignmentAPIController.unassignPrinterGroupReqHandler);
+app.put('/printer/:printerId/unAssign/printerGroups',validation.unAssignPrinterGroups, printerGroupAssignmentAPIController.unAssignPrinterGroupReqHandler);
 
+app.post('/printer/:printerId/assign/printerGroup/:printerGroupId',validation.assignOnePrinterGroup, printerGroupAssignmentAPIController.assignOnePrinterGroupReqHandler);
 
-
-
-
-
+app.delete('/printer/:printerId/unAssign/printerGroup/:printerGroupId',validation.unAssignOnePrinterGroup, printerGroupAssignmentAPIController.unAssignOnePrinterGroupReqHandler);
 
 
 

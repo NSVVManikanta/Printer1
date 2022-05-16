@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
               return printer;
             });
           },
+          beforeCreate(printerGroupObject, options) {
+            if (printerGroupObject)
+              return (printerGroupObject.assignedAt = commonHelper.getDate());
+          },
           },
       },
     )
