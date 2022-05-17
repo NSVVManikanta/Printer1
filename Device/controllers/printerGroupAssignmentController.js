@@ -25,9 +25,11 @@ const assignPrinterGroups = async (printerGroupArr, printerId) => {
         })
         console.log(arr)
         const assignmentArrObj = arr.map((id) => {
-            return { printerGroupId: id ,
-                printerId : printerId,
-                assignedBy : 1};
+            return {
+                printerGroupId: id,
+                printerId: printerId,
+                assignedBy: 1
+            };
         })
         console.log(assignmentArrObj)
         if (assignmentArrObj.length) {
@@ -50,7 +52,7 @@ const unAssignPrinterGroups = async (printerGroupId, printerId) => {
     try {
         if (!Array.isArray(printerGroupId)) {
             throw errConstant.CONST_PRINTERGROUPID_NOTARRAY;
-        } 
+        }
         if (isNaN(printerId)) {
             throw errConstant.CONST_ERROR_INT_PRINTERID;
         }
@@ -62,19 +64,19 @@ const unAssignPrinterGroups = async (printerGroupId, printerId) => {
                 ]
             }
         });
-        if(validateId.length == printerGroupId.length){
-        await Model.PrinterGroupAssignment.destroy({
-            where: {
-                [Model.Op.and]: [
-                    { printerGroupId: printerGroupId },
-                    { printerId: printerId }
-                ]
-            }
-        });
-        return { PrinterGroupids: printerGroupId };
-    }else{
-        throw errConstant.CONST_INVALID_ID
-    };
+        if (validateId.length == printerGroupId.length) {
+            await Model.PrinterGroupAssignment.destroy({
+                where: {
+                    [Model.Op.and]: [
+                        { printerGroupId: printerGroupId },
+                        { printerId: printerId }
+                    ]
+                }
+            });
+            return { PrinterGroupids: printerGroupId };
+        } else {
+            throw errConstant.CONST_INVALID_ID
+        };
     } catch (err) {
         console.log(err);
         throw err;
@@ -86,7 +88,7 @@ const assignOnePrinterGroup = async (params) => {
     try {
         if (isNaN(params.printerGroupId)) {
             throw errConstant.CONST_ERROR_INT_PRINTERGROUPID;
-        } 
+        }
         if (isNaN(params.printerId)) {
             throw errConstant.CONST_ERROR_INT_PRINTERID;
         }
@@ -98,18 +100,18 @@ const assignOnePrinterGroup = async (params) => {
                 ]
             }
         });
-        if(!validateId){
-        const printerGroupAssignment = await Model.PrinterGroupAssignment.create({
-            printerGroupId: params.printerGroupId,
-            printerId: params.printerId,
-            assignedBy: 1,
-        });
-        return { printerGroupId: printerGroupAssignment.printerGroupId };
-            
-    }else{
-        console.log("assigned!")
-        return { printerGroupId: params.printerGroupId };
-    }
+        if (!validateId) {
+            const printerGroupAssignment = await Model.PrinterGroupAssignment.create({
+                printerGroupId: params.printerGroupId,
+                printerId: params.printerId,
+                assignedBy: 1,
+            });
+            return { printerGroupId: printerGroupAssignment.printerGroupId };
+
+        } else {
+            console.log("assigned!")
+            return { printerGroupId: params.printerGroupId };
+        }
     } catch (err) {
         console.log(err);
         throw err;
@@ -122,7 +124,7 @@ const unAssignOnePrinterGroup = async (params) => {
     try {
         if (isNaN(params.printerGroupId)) {
             throw errConstant.CONST_ERROR_INT_PRINTERGROUPID;
-        } 
+        }
         if (isNaN(params.printerId)) {
             throw errConstant.CONST_ERROR_INT_PRINTERID;
         }

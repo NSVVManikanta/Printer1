@@ -7,12 +7,16 @@ const formatResponse = commonHelper.formatResponse;
 //Assign PrinterGroups validations
 const assignPrinterGroupsSchema = Joi.object({
     printerGroupId: Joi.array().items(
-        Joi.number().integer().required().messages({
+        Joi.number().positive().greater(0).required().messages({
             'number.base': 'printerGroupId must be an integer!',
+            'number.positive': 'printerGroupId must be an positive number!',
+            'number.greater': 'printerGroupId must be greater than zero!'
         }),
     ),
-    printerId: Joi.number().integer().required().messages({
-        'number.base': ' printerId must be an integer!',
+    printerId: Joi.number().positive().greater(0).required().messages({
+        'number.base': 'printerId must be an integer!',
+        'number.positive': 'printerId must be an positive number!',
+        'number.greater': 'printerId must be greater than zero!'
     }),
 });
 function assignPrinterGroups(req, res, next) {
@@ -23,8 +27,6 @@ function assignPrinterGroups(req, res, next) {
         };
         const options = {
             abortEarly: false,
-            allowUnknown: true,
-            stripUnknown: true
         }
         const schemaerr = assignPrinterGroupsSchema.validate(dataToValidate, options);
         if (schemaerr.error) {
@@ -41,12 +43,16 @@ function assignPrinterGroups(req, res, next) {
 //UnAssign PrinterGroups validations
 const unAssignPrinterGroupsSchema = Joi.object({
     printerGroupId: Joi.array().items(
-        Joi.number().integer().required().messages({
+        Joi.number().positive().greater(0).required().messages({
             'number.base': 'printerGroupId must be an integer!',
+            'number.positive': 'printerGroupId must be an positive number!',
+            'number.greater': 'printerGroupId must be greater than zero!'
         }),
     ),
-    printerId: Joi.number().integer().required().messages({
-        'number.base': ' printerId must be an integer!',
+    printerId: Joi.number().positive().greater(0).required().messages({
+        'number.base': 'printerId must be an integer!',
+        'number.positive': 'printerId must be an positive number!',
+        'number.greater': 'printerId must be greater than zero!'
     }),
 });
 function unAssignPrinterGroups(req, res, next) {
@@ -57,8 +63,6 @@ function unAssignPrinterGroups(req, res, next) {
         };
         const options = {
             abortEarly: false,
-            allowUnknown: true,
-            stripUnknown: true
         }
         const schemaerr1 = unAssignPrinterGroupsSchema.validate(dataToValidate, options);
         if (schemaerr1.error) {
@@ -74,11 +78,15 @@ function unAssignPrinterGroups(req, res, next) {
 
 //Assign One PrinterGroup validations
 const assignPrinterGroupSchema = Joi.object({
-    printerGroupId: Joi.number().required().messages({
+    printerGroupId: Joi.number().positive().greater(0).required().messages({
         'number.base': 'printerGroupId must be an integer!',
+        'number.positive': 'printerGroupId must be an positive number!',
+        'number.greater': 'printerGroupId must be greater than zero!'
     }),
-    printerId: Joi.number().required().messages({
-        'number.base': ' printerId must be an integer!',
+    printerId: Joi.number().positive().greater(0).required().messages({
+        'number.base': 'printerId must be an integer!',
+        'number.positive': 'printerId must be an positive number!',
+        'number.greater': 'printerId must be greater than zero!'
     }),
 });
 function assignOnePrinterGroup(req, res, next) {
@@ -89,8 +97,6 @@ function assignOnePrinterGroup(req, res, next) {
         };
         const options = {
             abortEarly: false,
-            allowUnknown: true,
-            stripUnknown: true
         }
         const schemaerr2 = assignPrinterGroupSchema.validate(dataToValidate, options);
         if (schemaerr2.error) {
@@ -106,11 +112,15 @@ function assignOnePrinterGroup(req, res, next) {
 
 //UAssign One PrinterGroup validations
 const unAssignPrinterGroup = Joi.object({
-    printerGroupId: Joi.number().integer().min(1).max(250).required().messages({
+    printerGroupId: Joi.number().positive().greater(0).required().messages({
         'number.base': 'printerGroupId must be an integer!',
+        'number.positive': 'printerGroupId must be an positive number!',
+        'number.greater': 'printerGroupId must be greater than zero!'
     }),
-    printerId: Joi.number().integer().min(1).max(250).required().messages({
-        'number.base': ' printerId must be an integer!',
+    printerId: Joi.number().positive().greater(0).required().messages({
+        'number.base': 'printerId must be an integer!',
+        'number.positive': 'printerId must be an positive number!',
+        'number.greater': 'printerId must be greater than zero!'
     }),
 });
 function unAssignOnePrinterGroup(req, res, next) {
@@ -121,8 +131,6 @@ function unAssignOnePrinterGroup(req, res, next) {
         };
         const options = {
             abortEarly: false,
-            allowUnknown: true,
-            stripUnknown: true
         }
         const schemaerr2 = unAssignPrinterGroup.validate(dataToValidate, options);
         if (schemaerr2.error) {

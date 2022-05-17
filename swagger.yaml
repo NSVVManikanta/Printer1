@@ -357,16 +357,25 @@ paths:
                       - 3          
       responses:
         200:
-          description: The PrinterGroups is Assigned!
+          description: The PrinterGroups is UnAssigned!
           content:
             application/json:
-              schema:
+              schema: 
                 type: object
-                properties:
-                  data:
-                    type: array 
-                    items:
-                      type: integer
+                properties:     
+                  data:    
+                    type: object 
+                    properties:
+                      printerGroupIds:
+                        type: array       
+                        items: 
+                          type: integer 
+                        example: 
+                          - 1
+                          - 2
+                          - 3  
+                  message:
+                    type: string
         400:
           description: Bad request! 
           content:
@@ -420,13 +429,18 @@ paths:
                 type: object
                 properties:     
                   data:    
-                    type: array 
-                    items: 
-                      type: integer 
-                    example: 
-                      - 1
-                      - 2
-                      - 3  
+                    type: object 
+                    properties:
+                      printerGroupIds:
+                        type: array       
+                        items: 
+                          type: integer 
+                        example: 
+                          - 1
+                          - 2
+                          - 3  
+                  message:
+                    type: string        
         400:
           description: Bad request! 
           content:
@@ -463,22 +477,19 @@ paths:
           # required: true                
       responses:
         200:
-          description: The PrinterGroup is Assigned!
+          description: The PrinterGroups is UnAssigned!
           content:
             application/json:
-              schema:
+              schema: 
                 type: object
-                properties:
-                  id:
-                    type: integer
-                  printerGroupId:
-                    type: integer
-                  printerId:
-                    type: integer
-                  assignedAt:
-                    type: date
-                  assignedBy:
-                    type: integer 
+                properties:     
+                  data:    
+                    type: object 
+                    properties:
+                      printerGroupId:
+                        type: integer  
+                  message:
+                    type: string 
         400:
           description: Bad request! 
           content:
@@ -515,14 +526,19 @@ paths:
           # required: true                 
       responses:
         200:
-          description: The PrinterGroup is UnAssigned!
+          description: The PrinterGroups is UnAssigned!
           content:
             application/json:
-              schema:
-                type: array
-                properties:
-                  id:
-                    type: integer 
+              schema: 
+                type: object
+                properties:     
+                  data:    
+                    type: object 
+                    properties:
+                      printerGroupId:
+                        type: integer  
+                  message:
+                    type: string 
         400:
           description: Bad request! 
           content:
